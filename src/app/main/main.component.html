@@ -1,0 +1,31 @@
+<main role="main">
+    <section class="jumbotron text-center">
+      <div class="container">
+        <h1 class="jumbotron-heading">Seja bem vindo ao iHungry</h1>
+        <p class="lead text-muted">Trabalhamos apenas com ingredientes de primeira qualidade, selecionados e frescos. Os hambúrgueres são preparados na hora, suculentos e com procedência. Você pode montar seu próprio hamburguer ou incrementar um dos nossos prontos.</p>
+        <p><a href="#" [routerLink]="['/new-burguer']" class="btn btn-danger my-2">Montar meu hamburguer</a></p>        
+      </div>
+    </section>
+    <div class="title-cards">
+        <h2 class="text-divider"><span>Hambúrgueres Prontos</span></h2>
+    </div>
+    <div class="album py-5 bg-light">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3" *ngFor="let item of menu; let i = index">
+            <div class="card mb-4 box-shadow">
+              <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x225]" style="height: 225px; width: 100%; display: block;" [src]="'../../assets/images/' + (i + 1) + '.jpg'" data-holder-rendered="true">
+              <div class="card-body" [attr.id]="'card-body-' + i">
+                  <div class="col-md-8"></div>
+                  <div class="col-md-4"></div>
+                <h5 class="card-title">{{item.name}}</h5>
+                <p class="card-text fs-12">Ingredientes: {{item.ingredientLabel}}</p>
+                <h4><span class="badge badge-success">{{item.price}}</span></h4>
+                <a href="#" [attr.id]="'btn-' + i" class="btn btn-danger pull-right" [routerLink]="['/selected-item', item.id]">Comprar</a>
+              </div>
+            </div>
+          </div>          
+        </div>
+      </div>
+    </div>
+  </main>

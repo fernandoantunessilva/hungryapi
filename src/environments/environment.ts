@@ -3,7 +3,8 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  api: 'http://ec2-13-58-28-143.us-east-2.compute.amazonaws.com/hungryapi/api'
 };
 
 /*

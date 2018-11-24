@@ -1,0 +1,83 @@
+<div class="card text-center">    
+    <div class="card-body">
+        <h5 class="card-title">Hambúrguer clássico, sem frescuras</h5>
+        <p class="card-text">Nossa receita: ingredientes sempre frescos e de altíssima qualidade, aproximação com fornecedores e valorização da nossa equipe.</p>              
+    </div>    
+</div>
+<section class="text-center">
+    <div class="container">
+        <p><a href="#" [routerLink]="['/']" class="btn btn-danger my-2">Voltar ao Cardápio</a></p>
+    </div>
+</section>
+<div class="album py-5 bg-light">
+    <div class="container">        
+        <div class="row">
+            <div class="col-md-4">
+                <div class="card mb-4 box-shadow">
+                <img class="card-img-top" data-src="holder.js/100px225?theme=thumb&amp;bg=55595c&amp;fg=eceeef&amp;text=Thumbnail" alt="Thumbnail [100%x325]" style="height: 325px; width: 100%; display: block;" [src]="isNew ? '../../assets/images/5.jpg' : (selectedItem.id ? '../../assets/images/' + selectedItem.id + '.jpg' : '../../assets/images/6.jpg')" data-holder-rendered="true">
+                <div class="card-body">
+                    <div class="col-md-8"></div>
+                    <div class="col-md-4"></div>
+                    <h5 class="card-title card-title-selected">{{selectedItem.name}}</h5>                      
+                </div>
+                </div>
+            </div>
+            <div class="col-md-5">
+                <h5>Ingredientes</h5>
+                <ul class="list-group">
+                    <li class="list-group-item ingredient" *ngFor="let ingredient of selectedItem.ingredients">{{ingredient.name}} - {{ingredient.priceLabel}} <a class="btn-align-right" (click)="removeIngredient(ingredient.newId)"><i class="fa fa-trash-o"></i></a></li>                        
+                </ul>                    
+                <form class="form-inline mg-top-25">                            
+                    <div class="form-group mx-sm-4 mb-2">
+                        <select class="form-control" (change)="selectIngredient($event.target.value)">
+                            <option value="">Adicionar mais Ingredientes</option>
+                            <option *ngFor="let ingredient of ingredients" value={{ingredient.id}}>{{ingredient.name}} - {{ingredient.priceLabel}}</option>
+                        </select>
+                    </div>
+                    <button class="btn btn-primary mb-2 btn-add" (click)="addIngredient($event);">Adicionar</button>
+                </form>
+            </div>
+            <div class="col-md-3">
+                <div class="card border-danger mb-3 light" style="max-width: 18rem;" *ngIf="lightPromotionActived">
+                    <div class="card-body text-danger">
+                      <h5 class="card-title">Promoção Light Ativada</h5>
+                      <p class="card-text">Se o lanche tem alface e não tem bacon, ganha 10% de desconto.</p>
+                    </div>
+                </div>
+                <div class="card border-danger mb-3 lot-of-meat" style="max-width: 18rem;" *ngIf="lotOfMeatActived">
+                    <div class="card-body text-danger">
+                      <h5 class="card-title">Promoção Muita carne Ativada</h5>
+                      <p class="card-text">A cada 3 porções de carne o cliente só paga 2. Se o lanche tiver 6 porções, o cliente pagará 4. Assim por diante.</p>
+                    </div>
+                </div>
+                <div class="card border-danger mb-3 lot-Of-cheese" style="max-width: 18rem;" *ngIf="lotOfCheeseActived">
+                    <div class="card-body text-danger">
+                      <h5 class="card-title">Promoção Muito queijo Ativada</h5>
+                      <p class="card-text">A cada 3 porções de queijo o cliente só paga 2. Se o lanche tiver 6 porções, o cliente pagará 4. Assim por diante.</p>
+                    </div>
+                </div>                  
+            </div>         
+        </div>
+        <div class="row mg-bt-25 mg-tp-25">
+            <div class="col-md-4">
+                <div class="card border-info mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Descontos</div>
+                    <div class="card-body text-info">
+                        <h1 class="card-title discount">{{discount}}</h1>
+                    </div>
+                </div>                                
+            </div> 
+            <div class="col-md-4">
+                <div class="card border-success mb-3" style="max-width: 18rem;">
+                    <div class="card-header">Total</div>
+                    <div class="card-body text-success">
+                        <h1 class="card-title total">{{total}}</h1>                                  
+                    </div>                                
+                </div>
+            </div>
+            <div class="col-md-4">
+                <button type="button" class="btn btn-primary btn-lg pull-right" style="position:relative;margin-top:100px;">Finalizar Compra</button>
+            </div>
+        </div>
+    </div>
+</div>
